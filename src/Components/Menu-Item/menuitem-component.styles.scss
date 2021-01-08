@@ -1,17 +1,3 @@
-.home-page {
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 20px  80px;
-}
-
-.card-container {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
 .menu-item {
     min-width: 30%;
     height: 240px;
@@ -21,7 +7,14 @@ padding: 20px  80px;
     justify-content: center;
     border: 1px solid black;
     margin: 0 7.5px 15px;
-
+    overflow: hidden;
+    &:hover {
+      cursor: pointer;
+      & .background-img { 
+      transform: scale(1.2);
+      transition: transform 6s cubic-bezier(0.075, 0.82, 0.165, 1);
+      }
+    }
     &:first-child {
         margin-right: 7.5px;
       }
@@ -29,8 +22,16 @@ padding: 20px  80px;
       &:last-child {
         margin-left: 7.5px;
       }
+      &.large {
+       height: 390px;
+      }
 
-
+      .background-img {
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      height: 100%;
+      }
     .content {
         height: 90px;
         padding: 0 25px;
@@ -39,6 +40,9 @@ padding: 20px  80px;
         align-items: center;
         justify-content: center;
         border: 1px solid black;
+        background-color: white;
+        opacity: 0.6;
+        position: absolute;
     
         .title {
           font-weight: bold;
