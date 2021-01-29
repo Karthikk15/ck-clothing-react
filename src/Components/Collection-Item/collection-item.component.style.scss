@@ -1,0 +1,21 @@
+.collection-item {
+  width: 22%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+
+  .image {
+    width: 100%;
+    height: 90%;
+    background-size: cover;
+    background: no-repeat center;
+  }
+   
+  .footer {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content:space-between;
+  }
+
+}
