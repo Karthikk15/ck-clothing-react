@@ -16,7 +16,7 @@ var fireBaseConfig = {
 
   export const fireStore = firebase.firestore();
   export const auth = firebase.auth();
-  export const addUserInfoInDb = async (user) => {
+  export const addUserInfoInDb = async (user, additionalItems) => {
        if(!user) 
        return;
        const userRef = fireStore.doc(`users/${user.uid}`);
@@ -30,7 +30,8 @@ var fireBaseConfig = {
          await userRef.set({
            displayName,
            email,
-           createdAt
+           createdAt,
+           ...additionalItems
          })
         } catch(error) {
           console.log(error.message);

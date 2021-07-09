@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './header.style.scss';
 import logo from '../../assests/CK Clothing-logo.png';
+import { connect } from 'react-redux';
 const Header = ({currentUser, SignOut}) => {
     return (
         <div className='header-container'>
@@ -14,7 +15,7 @@ const Header = ({currentUser, SignOut}) => {
              <Link to='/shop' className='option'>SHOP</Link>
              <Link to='/shop' className='option'>CONTACT</Link>
              {
-               (currentUser) ? <div className='option' onClick={SignOut}>Sign-Out</div> :
+               (currentUser) ? <div className='option' onClick={SignOut}>SIGN OUT</div> :
                <Link to='/sign' className='option'>SIGN IN</Link>
              }
           </div> 
@@ -22,4 +23,10 @@ const Header = ({currentUser, SignOut}) => {
     )
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+ return {
+   currentUser : state.user.currentUser
+ };
+}
+
+export default connect(mapStateToProps)(Header);

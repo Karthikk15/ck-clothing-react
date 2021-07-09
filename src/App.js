@@ -1,18 +1,17 @@
 import React from 'react';
 import HomePage from './Pages/Home-Page/home-page.component';
 import Shop from './Pages/Shop-Page/shop.component';
-import { Route, Switch } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import Header from './Components/Header/header.component';
 import Sign from './Pages/Sign-In-Sign-Up/sign-in-sign-up.component';
 import {auth, addUserInfoInDb }  from  '../src/Components/firebase/firebase';
+import { connect } from 'react-redux';
+import { setCurrentUser } from './Components/Redux/Users/user.actions';
 
  class App extends React.Component {
 
     constructor() {
        super();
-       this.state = {
-          currentUser : null
-       }
     } 
 
    unsubscribeAuth = null;   
@@ -23,19 +22,18 @@ import {auth, addUserInfoInDb }  from  '../src/Components/firebase/firebase';
    }
 
     componentDidMount() {
+      const {setCurrentUser} = this.props;
       this.unsubscribeAuth = auth.onAuthStateChanged( async (userAuth) => {
          if(userAuth) {
          const userRef = await addUserInfoInDb(userAuth);
          userRef.onSnapshot(docSnapShot => {
-            this.setState({
-               currentUser: {
+            setCurrentUser({
                   id: docSnapShot.id,
                   ...docSnapShot.data()
-               }
             })
          })
          } else {
-            this.setState({currentUser : userAuth});
+            setCurrentUser(userAuth);
          }
       });
     }
@@ -47,11 +45,11 @@ import {auth, addUserInfoInDb }  from  '../src/Components/firebase/firebase';
     render() {
       return (
          <div>
-            <Header currentUser ={this.state.currentUser} SignOut = {this.onSignOut}/>
+            <Header SignOut = {this.onSignOut}/>
             <Switch>
                <Route exact path='/' component={HomePage} />
                <Route exact path='/shop' component={Shop} />
-               <Route exact path='/sign' component={Sign} />
+               <Route exact path='/sign' render = { () => this.props.currentUser ? <Redirect to='/'></Redirect> : <Sign /> } />
             </Switch>
            
          </div>
@@ -59,4 +57,18 @@ import {auth, addUserInfoInDb }  from  '../src/Components/firebase/firebase';
     }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+   return {
+     currentUser : state.user.currentUser
+   };
+  }
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+       setCurrentUser : (user) => {
+         dispatch(setCurrentUser(user));
+       }
+   }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
