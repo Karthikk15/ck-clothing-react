@@ -1,0 +1,9 @@
+
+const CartActions = {
+    TOGGLE_CART_DROPDOWN : 'TOGGLE_CART_DROPDOWN',
+    ADD_ITEM : 'ADD_ITEM',
+    REMOVE_ITEM: 'REMOVE_ITEM',
+    REMOVE_SPECIFIC_ITEM: 'REMOVE_SPECIFIC_ITEM'
+};
+
+export default CartActions;

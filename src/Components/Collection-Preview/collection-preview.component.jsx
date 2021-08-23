@@ -1,8 +1,9 @@
 import React from 'react';
+import CustomButton from '../Custom-Button/custom-button.component';
 import './collection-preview.style.scss';
-
-
-const CollectionPreview = ({title, items}) => {
+import { connect } from 'react-redux';
+import { AddItem } from '../Redux/Cart/cart.actions';
+const CollectionPreview = ({title, items, addItem}) => {
  return (
      <div className='preview-collection' style={{marginBottom:'5rem'}}>
          <h1>{title.toUpperCase()}</h1>
@@ -16,6 +17,9 @@ const CollectionPreview = ({title, items}) => {
                         <span>{item.name}</span>
                         <span>{`$${item.price}`}</span>
                     </div>
+                    <div onClick ={() => addItem(item)} className='customBtn'>
+                       <CustomButton value ='ADD TO CART' inverted></CustomButton>
+                   </div>
                 </div>
             )
 
@@ -25,4 +29,12 @@ const CollectionPreview = ({title, items}) => {
  )
 }
 
-export default CollectionPreview;
+const mapDispatchToProps = (dispatch) => {
+  return {
+      addItem : (item) => {
+        dispatch(AddItem(item));
+      }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(CollectionPreview);

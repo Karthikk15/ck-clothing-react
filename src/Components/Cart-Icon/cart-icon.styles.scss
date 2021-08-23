@@ -1,0 +1,12 @@
+.cartIcon-container {
+    width: 25px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    .item-count-span {
+        position: absolute;
+        font-size: 9px;
+        top: 30%;
+        font-weight: bold;
+    }
+}

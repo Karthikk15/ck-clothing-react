@@ -8,13 +8,13 @@
     height: 100px;
     display: flex;
     justify-content: space-between;
-
+    position: relative;
     .option-container {
         display: flex;
         align-items: center;
+        cursor: pointer;
         .option {
             padding: 0px 20px;
-            cursor: pointer;
         }
     }
 }

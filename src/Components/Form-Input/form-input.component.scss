@@ -30,8 +30,10 @@ input[type="password"] {
     .input-label {
         position: absolute;
         top: 0px;
+        left: 0px;
         color:$sub-color;
-        font-size:x-small;
+        pointer-events: none;
+        font-size:small;
         &.shrink {
             @include labelPositionChange();
         }

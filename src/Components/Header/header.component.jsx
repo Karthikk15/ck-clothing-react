@@ -3,7 +3,12 @@ import {Link} from 'react-router-dom';
 import './header.style.scss';
 import logo from '../../assests/CK Clothing-logo.png';
 import { connect } from 'react-redux';
-const Header = ({currentUser, SignOut}) => {
+import CartIcon from '../Cart-Icon/cart-icon.component';
+import CartDropDown from '../Cart-DropDown/cart-dropdown.component';
+import { selectCurrentUser } from '../Redux/Users/user.selector';
+import { selectCartToggle } from '../Redux/Cart/cart.selectors';
+import { createStructuredSelector } from 'reselect';
+const Header = ({currentUser, SignOut, isCartClicked}) => {
     return (
         <div className='header-container'>
           <div className="logo-container">
@@ -18,15 +23,22 @@ const Header = ({currentUser, SignOut}) => {
                (currentUser) ? <div className='option' onClick={SignOut}>SIGN OUT</div> :
                <Link to='/sign' className='option'>SIGN IN</Link>
              }
-          </div> 
+             <CartIcon />
+          </div>
+          { isCartClicked && <CartDropDown /> } 
         </div>
     )
 }
 
-const mapStateToProps = (state) => {
- return {
-   currentUser : state.user.currentUser
- };
-}
+const mapStateToProps = createStructuredSelector({
+  currentUser : selectCurrentUser,
+  isCartClicked : selectCartToggle
+})
+// (state) => {
+//  return {
+//    currentUser : selectCurrentUser(state),
+//    isCartClicked : selectCartToggle(state)
+//  };
+// }
 
 export default connect(mapStateToProps)(Header);
