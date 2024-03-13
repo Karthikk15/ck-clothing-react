@@ -1,0 +1,52 @@
+.checkout-page {
+  width: 55%;
+  height: 90vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: auto;
+  margin-top: 15vh;
+}
+
+.checkout-page .checkout-header {
+  width: 100%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: 1px solid gray;
+}
+
+.checkout-page .checkout-header .headerBlock {
+  width: 23%;
+}
+
+.checkout-page .checkout-header .headerBlock:last-child {
+  width: 9%;
+}
+
+.checkout-page .totalPrice {
+  margin-left: auto;
+  font-size: 36px;
+  margin-top: 30px;
+}
+
+.checkout-page .payment-warning {
+  margin-top: 30px;
+  font-size: 24px;
+  color: red;
+  text-align: center;
+}
+
+.checkout-page .stripe-pay {
+  margin-top: 20px;
+  margin-left: auto;
+}
+/*# sourceMappingURL=checkout.styles.css.map */

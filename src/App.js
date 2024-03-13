@@ -2,13 +2,15 @@ import React from 'react';
 import HomePage from './Pages/Home-Page/home-page.component';
 import Shop from './Pages/Shop-Page/shop.component';
 import CheckOut from './Pages/Checkout-Page/checkout.component';
-import { Redirect, Route, Switch } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Header from './Components/Header/header.component';
 import Sign from './Pages/Sign-In-Sign-Up/sign-in-sign-up.component';
 import {auth, addUserInfoInDb }  from  '../src/Components/firebase/firebase';
 import { connect } from 'react-redux';
 import { selectCurrentUser } from './Components/Redux/Users/user.selector';
 import { setCurrentUser } from './Components/Redux/Users/user.actions';
+import Collection from './Pages/Collection/Collection.components';
+import { onMessageListener } from '../src/Components/firebase/firebase';
 
  class App extends React.Component {
 
@@ -26,35 +28,34 @@ import { setCurrentUser } from './Components/Redux/Users/user.actions';
     componentDidMount() {
       const {setCurrentUser} = this.props;
       this.unsubscribeAuth = auth.onAuthStateChanged( async (userAuth) => {
-         if(userAuth) {
-         const userRef = await addUserInfoInDb(userAuth);
-         userRef.onSnapshot(docSnapShot => {
-            setCurrentUser({
-                  id: docSnapShot.id,
-                  ...docSnapShot.data()
-            })
-         })
-         } else {
-            setCurrentUser(userAuth);
-         }
+         // if(userAuth) {
+         // const userRef = await addUserInfoInDb(userAuth);
+         // userRef.onSnapshot(docSnapShot => {
+         //    setCurrentUser({
+         //          id: docSnapShot.id,
+         //          ...docSnapShot.data()
+         //    })
+         // })
+         // } else {
+         //    setCurrentUser(userAuth);
+         // }
       });
-    }
-
-    onSignOut() {
-      auth.signOut();
+      // onMessageListener().then((payload) => {
+      //    console.log('Received Message', payload);
+      // })
     }
 
     render() {
       return (
          <div>
-            <Header SignOut = {this.onSignOut}/>
-            <Switch>
-               <Route exact path='/' component={HomePage} />
-               <Route path='/shop' component={Shop} />
-               <Route exact path='/checkout' component={CheckOut}></Route>
-               <Route exact path='/sign' render = { () => this.props.currentUser ? <Redirect to='/'></Redirect> : <Sign /> } />
-            </Switch>
-           
+            <Routes >
+               <Route path='/' element={<Header SignOut={this.onSignOut} />}>
+                  <Route index element={<HomePage />} />
+                  <Route path='shop/*' element={<Shop />} />
+                  <Route exact path='checkout' element={<CheckOut />}></Route>
+                  <Route exact path='sign' element={<Sign currentUser={this.props.currentUser} />} />
+               </Route>
+            </Routes>
          </div>
       )
     }

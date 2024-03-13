@@ -1,0 +1,41 @@
+input[type="password"] {
+  letter-spacing: 1ch;
+}
+
+.input-container {
+  margin-top: 20px;
+  position: relative;
+  height: 4rem;
+  color: black;
+  margin: 20px 0px;
+}
+
+.input-container input {
+  border: none;
+  border-bottom: 1px solid black;
+  width: 100%;
+  outline: none;
+  font-size: 20px;
+}
+
+.input-container input:focus ~ .input-label {
+  top: -15px;
+  font-size: 10px;
+  color: black;
+}
+
+.input-container .input-label {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: grey;
+  pointer-events: none;
+  font-size: small;
+}
+
+.input-container .input-label.shrink {
+  top: -15px;
+  font-size: 10px;
+  color: black;
+}
+/*# sourceMappingURL=form-input.component.css.map */

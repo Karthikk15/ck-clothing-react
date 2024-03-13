@@ -1,0 +1,18 @@
+.cartIcon-container {
+  width: 25px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.cartIcon-container .item-count-span {
+  position: absolute;
+  font-size: 9px;
+  top: 30%;
+  font-weight: bold;
+}
+/*# sourceMappingURL=cart-icon.styles.css.map */

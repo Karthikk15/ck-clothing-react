@@ -36,12 +36,11 @@ $border-color:#ad2121;
             background-color: white;
             color: black;
             border: none;
+            &:hover {
+                background-color: #422215;
+                color: white;
+            }
         }
-        &.googleBtn:hover {
-            background-color: #422215;
-            color: white;
-        }
-
         .svgLogo {
             margin-right: .5rem;
         }

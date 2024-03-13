@@ -1,0 +1,50 @@
+button {
+  border-color: #ad2121;
+  background-color: #ac1111;
+  color: white;
+  padding: 10px 15px;
+  font-size: 1rem;
+  outline: none;
+  border-radius: 10px;
+  -webkit-box-shadow: 2px 2px 5px #ac1111;
+          box-shadow: 2px 2px 5px #ac1111;
+  vertical-align: top;
+}
+
+button.inverted {
+  border-color: #ad2121;
+  background-color: white;
+  color: black;
+  border: black;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+button.inverted:hover {
+  border-color: #ad2121;
+  background-color: #ac1111;
+  color: white;
+}
+
+button:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  border: none;
+}
+
+button.googleBtn {
+  background-color: white;
+  color: black;
+  border: none;
+}
+
+button.googleBtn:hover {
+  background-color: #422215;
+  color: white;
+}
+
+button .svgLogo {
+  margin-right: .5rem;
+}
+/*# sourceMappingURL=custom-button.styles.css.map */

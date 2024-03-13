@@ -2,7 +2,7 @@ import React from 'react';
 import './Sign-Up.styles.scss';
 import FormInput from '../Form-Input/form-input.component';
 import CustomButton from '../Custom-Button/custom-button.component';
-import {auth, addUserInfoInDb} from '../firebase/firebase';
+import {addUserInfoInDb, createUserEmailAndPassword} from '../firebase/firebase';
 class SignUp extends React.Component {
     constructor() {
         super();
@@ -19,7 +19,7 @@ class SignUp extends React.Component {
         const {displayName, email, password, confirmPassword} = this.state;
         if(password === confirmPassword) {
             try {
-                const { user } = await auth.createUserWithEmailAndPassword(email, password);
+                const { user } = await createUserEmailAndPassword(email, password);
                  await addUserInfoInDb(user, {displayName});
                 this.setState({
                     'displayName': '',
