@@ -66,13 +66,17 @@ getToken(messaging, {vapidKey: "BP5xkva6ls60hY1Sgr22PT-ms94pjT0occtVTPYuvaFPV1SG
     const q = query(collectionRef);
   
     const querySnapshot = await getDocs(q);
-    const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-      const { title, items } = docSnapshot.data();
-      acc[title.toLowerCase()] = items;
-      return acc;
-    }, {});
+    const categories = querySnapshot.docs.map((docSnapshot) => {
+     return docSnapshot.data();
+    });
+
+    // const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    //   const { title, items } = docSnapshot.data();
+    //   acc[title.toLowerCase()] = items;
+    //   return acc;
+    // }, {});
   
-    return categoryMap;
+    return categories;
   };
 
 
