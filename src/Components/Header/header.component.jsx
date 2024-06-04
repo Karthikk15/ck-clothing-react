@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './header.style.js';
 import logo from '../../assests/CK Clothing-logo.png';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import CartIcon from '../Cart-Icon/cart-icon.component';
 import CartDropDown from '../Cart-DropDown/cart-dropdown.component';
 import { selectCurrentUser } from '../Redux/Users/user.selector';
@@ -10,11 +10,10 @@ import { selectCartToggle } from '../Redux/Cart/cart.selectors';
 import { createStructuredSelector } from 'reselect';
 import { Outlet } from 'react-router-dom';
 import { userContext } from '../../contexts/userContext';
-import { useContext } from 'react';
 import { signOutUser } from '../firebase/firebase';
 import { HeaderContainer, OptionContainer, Option, LogoStyle } from './header.style.js';
 const Header = ({isCartClicked}) => {
-    const { currentUser} = useContext(userContext);
+    const currentUser= useSelector(selectCurrentUser);
     return (
       <>
         <HeaderContainer>

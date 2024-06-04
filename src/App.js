@@ -39,6 +39,11 @@ import { onMessageListener } from '../src/Components/firebase/firebase';
          // } else {
          //    setCurrentUser(userAuth);
          // }
+         if (userAuth) { // When new authentication performed adding those details to firebase DB.
+            if (userAuth.displayName)
+                addUserInfoInDb(userAuth);
+        }
+        setCurrentUser(userAuth);
       });
       // onMessageListener().then((payload) => {
       //    console.log('Received Message', payload);

@@ -14,11 +14,11 @@ ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
       <PersistGate persistor={persistor}>
-      <UserProvider>
-        <ProductsProvider>
+      {/* <UserProvider> */}
+        {/* <ProductsProvider> */}
         <App />
-        </ProductsProvider>
-      </UserProvider>
+        {/* </ProductsProvider> */}
+      {/* </UserProvider> */}
       </PersistGate>
     </React.StrictMode>
   </BrowserRouter>

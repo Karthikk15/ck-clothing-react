@@ -2,8 +2,18 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom'
 import CollectionsOverviewComponent from '../../Components/Collections-Overview/Collections-overview.component';
 import Collection from '../Collection/Collection.components';
-import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { getCategoriesAndDocuments } from '../../Components/firebase/firebase';
+import { setProducts } from '../../Components/Redux/Shop/shop.action';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProductsAsync } from '../../Components/Redux/Shop/shop.action';
+
 const Shop = () => {
+  const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchProductsAsync());
+      },[])
+
     return (
             // <div className='shopPage-Container'>
             // <CollectionsOverviewComponent />

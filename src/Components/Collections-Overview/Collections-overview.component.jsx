@@ -1,15 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import CollectionPreview from '../../Components/Collection-Preview/collection-preview.component';
 import { useContext } from 'react';
-import { ProductContext } from '../../contexts/ProductsContext';
+import { ProductContext } from '../../contexts/ProductsContext'; 
+import { selectProductsMap } from '../Redux/Shop/shop.selector';
 // import { selectShopItems } from '../../Components/Redux/Shop/shop.selector';
+import { selectProductLoading } from '../Redux/Shop/shop.selector';
+import { Spinner } from '../Spinner/spinner.component';
 const CollectionOverview = () => {
-   const products = useContext(ProductContext)
+   const products = useSelector(selectProductsMap);
+   const isProductLoading = useSelector(selectProductLoading);
+
     return (
         <div className='shopPage-overview'>
         {
-        Object.keys(products).map((key, index) => {
+        isProductLoading ? <Spinner /> : products && Object.keys(products).map((key, index) => {
          const categoryItem = {title: key, items: products[key], id: key};
         return <CollectionPreview key = {index} {...categoryItem} />
         })
